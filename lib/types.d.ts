@@ -28,7 +28,7 @@ export interface IDotenvConfigOptions {
      *
      * example: `dotenv.config({ encoding: 'latin1' })`
      */
-    encoding?: BufferEncoding;
+    encoding?: BufferEncoding | string;
 
     /**
      * Default: `false`

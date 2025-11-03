@@ -19,7 +19,7 @@ const LINE = /(?:^|^)\s*(?:export\s+)?([\w.-]+)(?:\s*=\s*?|:\s+?)(\s*'(?:\\'|[^'
  */
 function config(options: IDotenvConfigOptions = {}) {
     const dotenvPath = path.resolve(process.cwd(), ".env");
-    let encoding = "utf8" as BufferEncoding;
+    let encoding = "utf8";
     let processEnv = process.env;
     if (options.processEnv) processEnv = options.processEnv;
     if (options.encoding) encoding = options.encoding;
@@ -38,6 +38,7 @@ function config(options: IDotenvConfigOptions = {}) {
 
     for (const path of optionPaths) {
         try {
+            // @ts-ignore
             const parsed = parse(fs.readFileSync(path, { encoding }));
             populate(processEnv, parsed, options);
         } catch (e) {
